@@ -40,9 +40,12 @@ main{
 
 /* form */
 .form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40%;
     height: 60%;
-    padding: 8%;
+    margin: 8%;
     background-color: white;
     border-radius: 8px;
     box-shadow: 5px 5px 10px 0px black;
@@ -50,7 +53,7 @@ main{
 
 /* input feild  */
 
-input[type="text"]{
+input[type="text"] ,input[type="password"]{
     border:3px solid #777777 ;
     border-radius: 25px;
     height: 2em;
@@ -66,26 +69,10 @@ input[type="text"]:focus{
     box-shadow: 1px 1px 1px 1px  rgba(0, 0, 0, 0.178);
 }
 label{
-    float: left;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.2em;
     letter-spacing: 2px;
     color: #00854A;
-}
-
-/* radio button group */
-.grouping-container{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    margin: 3% 15% 3% 20%;
-}
-.radio-group{
-    margin-bottom: 2px;
-    display: flex;
-}
-.radio-group input{
-    margin-right: 10%;
 }
 /* submit button  */
 input[type="submit"]{
@@ -99,7 +86,7 @@ input[type="submit"]{
     border-radius: 20px;
     background-color:#FFCB06;
 }
+
 input[type="submit"]:hover{
-    
     box-shadow: 1px 1px 1px 1px  rgba(0, 0, 0, 0.178);
 }

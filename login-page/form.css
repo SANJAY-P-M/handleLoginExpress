@@ -1,0 +1,105 @@
+/* initial adjustment */
+*{
+    margin: 0px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+body,html{
+    height: 100%;
+}
+/* container */
+.container{
+    display: flex;
+    height: 100%;
+}
+/* asidebar  */
+aside{
+    flex:4 ;
+    background-color: #FFCB06;
+    display: flex;
+    align-items: center;
+}
+/* adjusting the logo */
+aside img{
+    width: 80%;
+}
+
+/* main */
+main{
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #008549;
+}
+
+/* form */
+.form-container{
+    width: 40%;
+    height: 60%;
+    padding: 8%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 0px black;
+}
+
+/* input feild  */
+
+input[type="text"]{
+    border:3px solid #777777 ;
+    border-radius: 25px;
+    height: 2em;
+    width:80%;
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input[type="text"]:focus{
+    outline: none;
+    border-color:#FFCB06 ;
+    box-shadow: 1px 1px 1px 1px  rgba(0, 0, 0, 0.178);
+}
+label{
+    float: left;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    color: #00854A;
+}
+
+/* radio button group */
+.grouping-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 3% 15% 3% 20%;
+}
+.radio-group{
+    margin-bottom: 2px;
+    display: flex;
+}
+.radio-group input{
+    margin-right: 10%;
+}
+/* submit button  */
+input[type="submit"]{
+    margin-left: 100px;
+    margin-top: 20px;
+    font-size: larger;
+    font-weight: bold;
+    height: 45px;
+    width: 150px;
+    border: none;
+    border-radius: 20px;
+    background-color:#FFCB06;
+}
+input[type="submit"]:hover{
+    
+    box-shadow: 1px 1px 1px 1px  rgba(0, 0, 0, 0.178);
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application form</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <aside>
+            <center>
+                <img src="siet.png" alt="sietlogo">
+                <p>Approved by AICTE, New Delhi <b>|</b> Affiliated to Anna University, Chennai
+                    <br>Accredited by NBA [CSE, EEE, ECE, IT, MECH] <b>&amp;</b> NAAC with A Grade
+                </p>
+                <br>
+                <p>
+                    Sri Shakthi Nagar, L &amp; T By - Pass,<br>
+                    Chinniyampalayam Post, Coimbatore - 62.<br>
+                    <br>
+                    <b>Principal E-Mail:</b>&nbsp;&nbsp; <a href="mailto:principal@siet.ac.in"> principal@siet.ac.in</a>
+                    <br>
+                    <a href="tel:+91 422 2369900"><i class="fa fa-phone"></i> +91 422 2369900</a>
+                    <br>
+                    <a href="tel:+91 75041 69999"><i class="fa fa-mobile"></i> +91 75041 69999</a>&nbsp;, <a
+                        href="tel:+91 94446 20505">+91 94446 20505</a>
+                    <br>
+                    <a href="mailto:admissions@siet.ac.in"><i class="fa fa-envelope"></i> admissions@siet.ac.in</a>
+                </p>
+            </center>
+        </aside>
+        <main>
+            <div class="form-container">
+                <form action="authenticatedPage" method="POST">
+                    <!-- name -->
+                    <label for="name">NAME</label><br>
+                    <input type="text" id="name"><br>
+
+                    <!-- department -->
+                    <label for="department">DEPARTMENT</label><br>
+                    <input type="text" id="department" ><br>
+
+                    <!-- sports sectiion  -->
+                    SPORTS <br>
+                    <div class="grouping-container">
+                        <div class="radio-group">
+                            <input type="radio"  id="cricket" name="sports">
+                            <label for="cricket">CRICKET</label>
+                        </div>
+        
+                        <div class="radio-group">
+                            <input type="radio"  id="baseball" name="sports">
+                            <label for="baseball">BASEABALL</label>
+                        </div>
+
+                        <div class="radio-group">
+                            <input type="radio"  id="hockey" name="sports">
+                            <label for="hockey">HOCKEY</label>
+                        </div>
+                    </div>
+
+
+                    <!-- checkbox -->
+                    LANGUAGE
+                    <div class="grouping-container">
+                        <div class="radio-group">
+                            <input type="checkbox"  id="english" name="language">
+                            <label for="english">ENGLISH</label>
+                        </div>
+
+
+                        <div class="radio-group">
+                            <input type="checkbox"  id="tamil" name="language">
+                            <label for="tamil">TAMIL</label>
+                        </div>
+
+
+                        <div class="radio-group">
+                            <input type="checkbox"  id="hindi" name="language">
+                            <label for="hindi">HINDI</label>
+                        </div>
+                        
+                        <div class="radio-group">
+                            <input type="checkbox"  id="japanese" name="language">
+                            <label for="japanese">JAPANESE</label>
+                        </div>
+                        
+                    </div>
+                    <input type="submit" value="SUBMIT">
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

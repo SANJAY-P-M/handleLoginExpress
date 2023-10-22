@@ -31,8 +31,11 @@ expressObject.listen(
         } else {
             console.log(`Server started`);
         }
-    }
+    }   
 );
+
+// variable that is used to authenticate 
+var authenticated = false;
 
 
 // Before trying to get login pages we need to put all html and css in static middleware
@@ -42,7 +45,12 @@ expressObject.use(express.static(`login-page`))
 expressObject.get(
     '/',
     (req, res) => {
-        res.sendFile(__dirname + '/login-page/form.html');
+        // By making this conditional
+        // Once the user is login he/she will never see the login page again till he/she logout( as like instagram )
+        if(!authenticated)
+            res.sendFile(__dirname + '/login-page/form.html');
+        else
+            res.send(`Authenticated page !<a href='/logout'>logout</a>`);
     }
 );
 
@@ -54,12 +62,23 @@ expressObject.use(express.urlencoded({extended : true}))
 
 // Handling POST request from form
 expressObject.post(
-    '/authenticatedPage',
+    '/authenticationPage',
     (req, res) => {
         var formData = req.body;
-        if(formData.username === 'admin' && formData.password === 'password123')
-            res.send("Success dude you cracked it!");
-        else
-            res.send(`Bro check your credentials`);
+        if(formData.username === 'admin' && formData.password === 'password123'){
+            authenticated = true;
+            res.redirect(`/`);
+        }
+        else{
+            res.redirect(`/`);
+        }
     }
-)
+);
+
+expressObject.get(
+    '/logout',
+    (req,res)=>{
+        authenticated = false;
+        res.redirect('/');
+    }
+);

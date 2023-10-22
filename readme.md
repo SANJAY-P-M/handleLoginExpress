@@ -1,3 +1,6 @@
+# Encountered a bug in this phrase
+   The current application experiences a problem where the authentication state is shared among all clients. When one client logs in or out, it inadvertently affects the authentication status of other clients. This issue may lead to unexpected behavior and is an area for improvement in the application's design.
+
 # Task 5: Creating a Login Form with Express.js
 
 In this repository, we have implemented a simple login form using Express.js to handle login form submissions and authenticate users. Additionally, we have added a logout button that allows users to log out, preventing them from accessing their accounts and redirecting them to the login page.

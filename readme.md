@@ -1,5 +1,9 @@
+
 # Encountered a bug in this phrase
    The current application experiences a problem where the authentication state is shared among all clients. When one client logs in or out, it inadvertently affects the authentication status of other clients. This issue may lead to unexpected behavior and is an area for improvement in the application's design.
+
+# video sasmple
+   https://github.com/SANJAY-P-M/handleLoginExpress/assets/106712995/24b2736f-02b2-4419-97ba-0784daca7a5d
 
 # Task 5: Creating a Login Form with Express.js
 

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application form</title>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
     <link rel="stylesheet" href="form.css">
 </head>
 
@@ -36,7 +37,7 @@
         </aside>
         <main>
             <div class="form-container">
-                <form action="authenticationPage" method="POST">
+                <form id="login">
                     <!-- username -->
                     <label for="username">USERNAME</label><br>
                     <input type="text" id="username" name="username"><br>
@@ -51,5 +52,30 @@
         </main>
     </div>
 </body>
+<script>
+    document.getElementById('login').addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+
+        fetch('/authenticatedContent', {
+            method: 'POST',
+            // For several times I missed out this header ,
+            // When we need to send data we need to mention Content-Type as application/json
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                password : document.getElementById('password').value
+            })
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            // Want to decide where to store JSON web token
+        }).catch(error => {
+            console.log(error);
+        })
+    })
+</script>
 
 </html>

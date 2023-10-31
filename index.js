@@ -6,13 +6,13 @@
 
 // importing express cjs comment it If you use ECMA script
 const express = require("express");
-
+const jwt = require("jsonwebtoken");
 
 // uncomment below if you use ECMA Script 
 // import express from "express";
 // import { fileURLToPath } from "url";
 // var __dirname = fileURLToPath(import.meta.url);
-
+// import { jwt } from "jsonwebtoken";
 
 // creating a express object
 var expressObject = express();
@@ -31,53 +31,57 @@ expressObject.listen(
         } else {
             console.log(`Server started`);
         }
-    }   
+    }
 );
-
-// variable that is used to authenticate 
-var authenticated = false;
 
 
 // Before trying to get login pages we need to put all html and css in static middleware
-expressObject.use(express.static(`login-page`))
+expressObject.use(express.static(`login-page`));
+
+// Convert json to handle the response easily 
+expressObject.use(express.json());
 
 // making a response
 expressObject.get(
     '/',
     (req, res) => {
-        // By making this conditional
-        // Once the user is login he/she will never see the login page again till he/she logout( as like instagram )
-        if(!authenticated)
-            res.sendFile(__dirname + '/login-page/form.html');
-        else
-            res.send(`Authenticated page !<a href='/logout'>logout</a>`);
+        // if the user is not authenticated then he will be redirected to login page
+        var token = req.headers.authorization;
+        jwt.verify(token, "password", (error, decoded) => {
+            if (error)
+                res.sendFile(__dirname + '/login-page/form.html');
+            else {
+                res.send(decoded);
+            }
+        })
     }
 );
 
 
 
 // Adding another middleware function to get form data
-expressObject.use(express.urlencoded({extended : true}))
+expressObject.use(express.urlencoded({ extended: true }))
 
 
 // Handling POST request from form
 expressObject.post(
-    '/authenticationPage',
+    '/authenticatedContent',
     (req, res) => {
-        var formData = req.body;
-        if(formData.username === 'admin' && formData.password === 'password123'){
-            authenticated = true;
+        console.log(req.body);
+        var username = req.body.username;
+        var password = req.body.password;
+        if (username === 'admin' && password === 'password123')
+            res.json({
+                jwt :jwt.sign(req.body, password)
+            });
+        else
             res.redirect(`/`);
-        }
-        else{
-            res.redirect(`/`);
-        }
     }
 );
 
 expressObject.get(
     '/logout',
-    (req,res)=>{
+    (req, res) => {
         authenticated = false;
         res.redirect('/');
     }

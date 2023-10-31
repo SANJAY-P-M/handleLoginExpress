@@ -1,5 +1,6 @@
-# Encountered a bug in this phrase
-   The current application experiences a problem where the authentication state is shared among all clients. When one client logs in or out, it inadvertently affects the authentication status of other clients. This issue may lead to unexpected behavior and is an area for improvement in the application's design.
+# JWT-Based Authentication
+
+In the current application, there is a known issue where the authentication state is shared among all clients, causing unexpected behavior. To address this issue, we have implemented a JSON Web Token (JWT) based authentication system.
 
 # Task 5: Creating a Login Form with Express.js
 

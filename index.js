@@ -7,12 +7,14 @@
 // importing express cjs comment it If you use ECMA script
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const cookie = require("cookie");
 
 // uncomment below if you use ECMA Script 
 // import express from "express";
 // import { fileURLToPath } from "url";
 // var __dirname = fileURLToPath(import.meta.url);
 // import { jwt } from "jsonwebtoken";
+// import { cookie } from "cookie";
 
 // creating a express object
 var expressObject = express();
@@ -46,14 +48,27 @@ expressObject.get(
     '/',
     (req, res) => {
         // if the user is not authenticated then he will be redirected to login page
-        var token = req.headers.authorization;
-        jwt.verify(token, "password", (error, decoded) => {
-            if (error)
-                res.sendFile(__dirname + '/login-page/form.html');
-            else {
-                res.send(decoded);
+        try {
+            // Parsing the cookie before using it 
+            var incomingCookies = cookie.parse(req.headers.cookie);
+
+            console.log(incomingCookies);
+            var token = incomingCookies.jwt;
+            if(token){
+                jwt.verify(token, "password", (error, decoded) => {
+                    if (error)
+                        res.redirect(__dirname + '/login-page/form.html');
+                    else {
+                        res.redirect(__dirname+`/login-page/authorized.html`);
+                    }
+                });
             }
-        })
+            else
+                res.sendFile(__dirname + '/login-page/form.html');
+        } catch (error) {
+            console.log(error);
+            res.sendFile(__dirname + '/login-page/form.html');
+        }
     }
 );
 
@@ -67,15 +82,20 @@ expressObject.use(express.urlencoded({ extended: true }))
 expressObject.post(
     '/authenticatedContent',
     (req, res) => {
-        console.log(req.body);
-        var username = req.body.username;
-        var password = req.body.password;
-        if (username === 'admin' && password === 'password123')
-            res.json({
-                jwt :jwt.sign(req.body, password)
+        var { username, password } = req.body;
+        if (username === 'admin' && password === 'password123') {
+            var token = jwt.sign(
+                {
+                    message: 'login successful'
+                },
+                'password'
+            );
+            res.cookie('jwt',token,{
+                httpOnly:true,
             });
-        else
-            res.redirect(`/`);
+            console.log(`token Attached`);
+        }
+        res.redirect(`/`);
     }
 );
 

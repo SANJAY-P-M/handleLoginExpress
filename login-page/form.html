@@ -69,9 +69,8 @@
                 password : document.getElementById('password').value
             })
         }).then(response => {
-            return response.json();
-        }).then(data => {
             // Want to decide where to store JSON web token
+            console.log(response.headers.getSetCookie());
         }).catch(error => {
             console.log(error);
         })

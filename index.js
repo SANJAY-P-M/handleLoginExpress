@@ -8,6 +8,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie");
+const path = require("path");
 
 // uncomment below if you use ECMA Script 
 // import express from "express";
@@ -38,7 +39,7 @@ expressObject.listen(
 
 
 // Before trying to get login pages we need to put all html and css in static middleware
-expressObject.use(express.static(`login-page`));
+expressObject.use(express.static(`public`));
 
 // Convert json to handle the response easily 
 expressObject.use(express.json());
@@ -56,18 +57,18 @@ expressObject.get(
             var token = incomingCookies.jwt;
             if(token){
                 jwt.verify(token, "password", (error, decoded) => {
-                    if (error)
-                        res.redirect(__dirname + '/login-page/form.html');
+                    if (error){
+                        res.clearCookie();
+                        res.redirect(`/`);
+                    }
                     else {
-                        res.redirect(__dirname+`/login-page/authorized.html`);
+                        res.sendFile(__dirname+`/authorized.html`);
                     }
                 });
             }
-            else
-                res.sendFile(__dirname + '/login-page/form.html');
         } catch (error) {
             console.log(error);
-            res.sendFile(__dirname + '/login-page/form.html');
+            res.sendFile(__dirname + '/public/form.html');
         }
     }
 );
@@ -80,7 +81,7 @@ expressObject.use(express.urlencoded({ extended: true }))
 
 // Handling POST request from form
 expressObject.post(
-    '/authenticatedContent',
+    '/authenticate',
     (req, res) => {
         var { username, password } = req.body;
         if (username === 'admin' && password === 'password123') {
@@ -102,7 +103,7 @@ expressObject.post(
 expressObject.get(
     '/logout',
     (req, res) => {
-        authenticated = false;
+        res.clearCookie('jwt');
         res.redirect('/');
     }
 );

@@ -55,9 +55,9 @@
 <script>
     document.getElementById('login').addEventListener('submit', (event) => {
         event.preventDefault();
-        
 
-        fetch('/authenticatedContent', {
+
+        fetch('/authenticate', {
             method: 'POST',
             // For several times I missed out this header ,
             // When we need to send data we need to mention Content-Type as application/json
@@ -66,11 +66,10 @@
             },
             body: JSON.stringify({
                 username: document.getElementById('username').value,
-                password : document.getElementById('password').value
+                password: document.getElementById('password').value
             })
         }).then(response => {
-            // Want to decide where to store JSON web token
-            console.log(response.headers.getSetCookie());
+            console.log(response.url)
         }).catch(error => {
             console.log(error);
         })

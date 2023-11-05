@@ -1,3 +1,6 @@
+# 304 Not Modified
+   Due to 304 Not Modified response the client uses the previously fetched path '/'
+
 # Task 5: Creating a Login Form with Express.js
 
 In this repository, we have implemented a simple login form using Express.js to handle login form submissions and authenticate users. Additionally, we have added a logout button that allows users to log out, preventing them from accessing their accounts and redirecting them to the login page.
